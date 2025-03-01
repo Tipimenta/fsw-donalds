@@ -15,7 +15,8 @@ interface ProductHeaderProps {
 const ProductHeader = ({product}: ProductHeaderProps)  => {
   const router = useRouter();
   const handleBackClick = () => router.back();
- return ( <div className="relative w-full h-[300px]" >
+ return ( 
+ <div className="relative w-full min-h-[300px]">
   <Button
          variant="secondary"
          size="icon"
@@ -28,7 +29,7 @@ const ProductHeader = ({product}: ProductHeaderProps)  => {
        <Image 
    src={product.imageUrl}
    alt={product.name}
-   fill
+   layout="fill"
    className="object-contain"
    />
  
