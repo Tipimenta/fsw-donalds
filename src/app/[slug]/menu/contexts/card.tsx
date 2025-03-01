@@ -28,8 +28,29 @@ export const CardProvider = ({ children }: { children: ReactNode }) => {
     const toggleCard = () => setIsOpen((prev) => !prev);
 
     const addProduct = (product: CardProduct) => {
-        setProducts(prev => [...prev, product])
+        //verificar se o produto já esta no carrinha
+        // se estiver, aumente sua quantidade.
+        // se não estiver, adiciona
+
+        const productIsAlreadOnTheCard = products.some(prevProduct => prevProduct.id === product.id )
+
+            if (!productIsAlreadOnTheCard){
+                return  setProducts((prev) => [...prev, product])
     }
+
+    setProducts(prevProducts => {
+        return (prevProducts.map(prevProduct => {
+            if (prevProduct.id === product.id){
+                return {
+                    ...prevProduct,
+                    quantity: prevProduct.quantity + product.quantity
+                }
+            }
+            return prevProduct
+        }))
+    })
+    
+}
 
     return (
         <CardContext.Provider value={{
